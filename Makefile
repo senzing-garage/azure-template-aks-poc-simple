@@ -22,7 +22,8 @@ build: aks-poc-simple.json
 # -----------------------------------------------------------------------------
 
 aks-poc-simple.json:
-	bicep build bicep/aks-poc-simple.bicep \
+	az bicep build \
+		--file bicep/aks-poc-simple.bicep \
 		--outfile arm-json/aks-poc-simple.json
 
 # -----------------------------------------------------------------------------

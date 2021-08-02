@@ -7,6 +7,7 @@
 /*
 ** ----------------------------------------------------------------------------
 ** Parameters
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters
 ** ----------------------------------------------------------------------------
 */
 
@@ -51,6 +52,7 @@ param sqlServerAdministratorLoginPassword string
 /*
 ** ----------------------------------------------------------------------------
 ** Variables
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/variables
 ** ----------------------------------------------------------------------------
 */
 
@@ -62,6 +64,7 @@ var sqlServerName = 'senzing-${location}-${uniqueString(resourceGroup().id)}'
 /*
 ** ----------------------------------------------------------------------------
 ** Modules
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules
 ** ----------------------------------------------------------------------------
 */
 
@@ -92,6 +95,7 @@ module database 'modules/queue.bicep' = {
 /*
 ** ----------------------------------------------------------------------------
 ** Outputs
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs
 ** ----------------------------------------------------------------------------
 */
 
