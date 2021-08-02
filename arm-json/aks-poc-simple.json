@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.4.63.48766",
-      "templateHash": "10547590499014755759"
+      "version": "0.4.451.19169",
+      "templateHash": "3413933487727287334"
     }
   },
   "parameters": {
@@ -53,13 +53,13 @@
       }
     },
     "sqlServerAdministratorLogin": {
-      "type": "secureString",
+      "type": "string",
       "metadata": {
         "description": "The administrator login username for the SQL server."
       }
     },
     "sqlServerAdministratorLoginPassword": {
-      "type": "string",
+      "type": "secureString",
       "metadata": {
         "description": "The administrator login password for the SQL server."
       }
@@ -114,8 +114,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.4.63.48766",
-              "templateHash": "18178054181620285313"
+              "version": "0.4.451.19169",
+              "templateHash": "14432574364632266774"
             }
           },
           "parameters": {
@@ -245,6 +245,56 @@
               "value": "[parameters('sqlServerName')]"
             }
           }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "queue",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "environmentName": {
+            "value": "[parameters('environmentName')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.4.451.19169",
+              "templateHash": "5966654349366856579"
+            }
+          },
+          "parameters": {
+            "environmentName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the environment. This must be Development or Production."
+              },
+              "allowedValues": [
+                "Development",
+                "Production"
+              ]
+            },
+            "location": {
+              "type": "string",
+              "metadata": {
+                "description": "The Azure region into which the resources should be deployed."
+              }
+            }
+          },
+          "functions": [],
+          "resources": []
         }
       }
     }

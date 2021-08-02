@@ -4,6 +4,7 @@
 
 // targetScope = 'subscription'
 
+
 /*
 ** ----------------------------------------------------------------------------
 ** Parameters
@@ -83,7 +84,7 @@ module database 'modules/database.bicep' = {
 }
 
 
-module database 'modules/queue.bicep' = {
+module queue 'modules/queue.bicep' = {
   name: 'queue'
   params: {
     environmentName: environmentName

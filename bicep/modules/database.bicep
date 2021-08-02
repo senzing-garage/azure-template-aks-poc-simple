@@ -1,6 +1,7 @@
 /*
 ** ----------------------------------------------------------------------------
 ** Parameters
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters
 ** ----------------------------------------------------------------------------
 */
 
@@ -43,6 +44,7 @@ param sqlServerName string
 /*
 ** ----------------------------------------------------------------------------
 ** Variables
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/variables
 ** ----------------------------------------------------------------------------
 */
 
@@ -51,6 +53,7 @@ var auditingEnabled = environmentName == 'Production'
 /*
 ** ----------------------------------------------------------------------------
 ** Resources
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-declaration
 ** ----------------------------------------------------------------------------
 */
 
@@ -96,6 +99,7 @@ resource sqlServerAudit 'Microsoft.Sql/servers/auditingSettings@2020-11-01-previ
 /*
 ** ----------------------------------------------------------------------------
 ** Outputs
+** https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/outputs
 ** ----------------------------------------------------------------------------
 */
 
