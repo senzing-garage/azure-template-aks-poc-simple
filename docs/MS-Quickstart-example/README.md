@@ -26,14 +26,22 @@ Full tutorial at
     az aks install-cli
     ```
 
-1. :pencil2: Set environment variables.
+1. :pencil2: Create unique prefix.
+   This will be used to create unique names in Azure.
    Example:
 
     ```console
-    export AZ_RESOURCE_GROUP_NAME=MjdResourceGroup
+    export MY_PREFIX=xyzzy
+    ```
+
+1. Set environment variables using unique prefix.
+   Example:
+
+    ```console
+    export AZ_RESOURCE_GROUP_NAME="${MY_PREFIX}-ResourceGroup"
     export AZ_LOCATION=eastus
-    export AZ_ACR_NAME=MjdContainerRegistry
-    export AZ_AKS_NAME=MjdAks
+    export AZ_ACR_NAME="${MY_PREFIX}-ACR"
+    export AZ_AKS_NAME="${MY_PREFIX}-AKS"
     ```
 
 ## Create a Resource Group
