@@ -38,10 +38,10 @@ Full tutorial at
    Example:
 
     ```console
-    export AZ_RESOURCE_GROUP_NAME="${MY_PREFIX}-ResourceGroup"
+    export AZ_RESOURCE_GROUP_NAME="${MY_PREFIX}ResourceGroup"
     export AZ_LOCATION=eastus
-    export AZ_ACR_NAME="${MY_PREFIX}-ACR"
-    export AZ_AKS_NAME="${MY_PREFIX}-AKS"
+    export AZ_ACR_NAME="${MY_PREFIX}Acr"
+    export AZ_AKS_NAME="${MY_PREFIX}Aks"
     ```
 
 ## Create a Resource Group
