@@ -92,7 +92,7 @@ describing where we can improve.   Now on with the show...
 
 ### Create ARM file
 
-1. Create ``arm-json/aks-poc-simple` JSON file.
+1. Create `arm-json/aks-poc-simple` JSON file.
    Example
 
     ```console
