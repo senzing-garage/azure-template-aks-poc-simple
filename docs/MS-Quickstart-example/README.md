@@ -31,7 +31,7 @@ Full tutorial at
    Example:
 
     ```console
-    export MY_PREFIX=xyzzy
+    export MY_PREFIX=Xyzzy
     ```
 
 1. Set environment variables using unique prefix.
