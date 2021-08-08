@@ -31,17 +31,17 @@ Full tutorial at
    Example:
 
     ```console
-    export MY_PREFIX=Xyzzy
+    export DEMO_PREFIX=Xyzzy
     ```
 
 1. Set environment variables using unique prefix.
    Example:
 
     ```console
-    export AZ_RESOURCE_GROUP_NAME="${MY_PREFIX}ResourceGroup"
-    export AZ_LOCATION=eastus
-    export AZ_ACR_NAME="${MY_PREFIX}Acr"
-    export AZ_AKS_NAME="${MY_PREFIX}Aks"
+    export AZURE_RESOURCE_GROUP_NAME="${DEMO_PREFIX}ResourceGroup"
+    export AZURE_LOCATION=eastus
+    export AZURE_ACR_NAME="${DEMO_PREFIX}Acr"
+    export AZURE_AKS_NAME="${DEMO_PREFIX}Aks"
     ```
 
 ## Create a Resource Group
@@ -53,8 +53,8 @@ Full tutorial at
 
     ```console
     az group create \
-        --name ${AZ_RESOURCE_GROUP_NAME} \
-        --location ${AZ_LOCATION}
+        --name ${AZURE_RESOURCE_GROUP_NAME} \
+        --location ${AZURE_LOCATION}
     ```
 
 ## Create an Azure Container Registry
@@ -66,8 +66,8 @@ Full tutorial at
 
     ```console
     az acr create \
-        --resource-group ${AZ_RESOURCE_GROUP_NAME} \
-        --name ${AZ_ACR_NAME} \
+        --resource-group ${AZURE_RESOURCE_GROUP_NAME} \
+        --name ${AZURE_ACR_NAME} \
         --sku Basic
     ```
 
@@ -80,10 +80,10 @@ Full tutorial at
 
     ```console
     az aks create \
-        --resource-group ${AZ_RESOURCE_GROUP_NAME} \
-        --name ${AZ_AKS_NAME} \
-        --location ${AZ_LOCATION} \
-        --attach-acr ${AZ_ACR_NAME} \
+        --resource-group ${AZURE_RESOURCE_GROUP_NAME} \
+        --name ${AZURE_AKS_NAME} \
+        --location ${AZURE_LOCATION} \
+        --attach-acr ${AZURE_ACR_NAME} \
         --generate-ssh-keys
     ```
 
@@ -96,8 +96,8 @@ Full tutorial at
 
     ```console
     az aks get-credentials \
-        --resource-group ${AZ_RESOURCE_GROUP_NAME} \
-        --name ${AZ_AKS_NAME}
+        --resource-group ${AZURE_RESOURCE_GROUP_NAME} \
+        --name ${AZURE_AKS_NAME}
     ```
 
 ## Download the sample application
@@ -125,7 +125,7 @@ Full tutorial at
 
     az acr build \
         --image azure-vote-front:v1 \
-        --registry ${AZ_ACR_NAME} \
+        --registry ${AZURE_ACR_NAME} \
         --file Dockerfile \
         .
     ```
@@ -191,7 +191,7 @@ Full tutorial at
             enabled: false
 
         image:
-          repository: ${AZ_ACR_NAME}.azurecr.io/azure-vote-front
+          repository: ${AZURE_ACR_NAME}.azurecr.io/azure-vote-front
           pullPolicy: IfNotPresent
           tag: "v1"
 
@@ -348,7 +348,7 @@ From the `kubectl get service ...` command output, use the `<EXTERNAL-IP>` as th
 
     ```console
     az group delete \
-        --name ${AZ_RESOURCE_GROUP_NAME} \
+        --name ${AZURE_RESOURCE_GROUP_NAME} \
         --yes \
         --no-wait
     ```
