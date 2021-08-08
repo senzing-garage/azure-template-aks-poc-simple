@@ -338,7 +338,7 @@ Full tutorial at
 
 ## View results
 
-Enter `<EXTERNAL-IP>` from `kubectl get service ...` command into a web-browser.
+From the `kubectl get service ...` command output, use the `<EXTERNAL-IP>` as the address in a web-browser.
 
 ## Delete the cluster
 
