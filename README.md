@@ -1,5 +1,7 @@
 # azure-template-aks-poc-simple
 
+## :warning: Repository in abeyance
+
 ## Synopsis
 
 :warning: This is incomplete work -- and probably doesn't full work.
