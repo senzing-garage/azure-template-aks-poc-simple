@@ -2,6 +2,8 @@
 
 ## Synopsis
 
+:warning: This is incomplete work -- and probably doesn't full work.
+
 Using a Cloud-Native Application Bundle (CNAB) deploy an example Senzing stack.
 An Azure ARM template for bringing up Senzing on Kubernetes (AKS)
 
@@ -13,11 +15,6 @@ An Azure ARM template for bringing up Senzing on Kubernetes (AKS)
 1. [Prerequisites](#prerequisites)
     1. [Prerequisite software](#prerequisite-software)
     1. [Clone repository](#clone-repository)
-1. [Demonstrate](#demonstrate)
-
-1. [Cleanup](#cleanup)
-    1. [Delete everything in project](#delete-everything-in-project)
-    1. [Delete minikube cluster](#delete-minikube-cluster)
 
 ## Preamble
 
