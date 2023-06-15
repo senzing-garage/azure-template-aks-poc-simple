@@ -1,0 +1,320 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.451.19169",
+      "templateHash": "3413933487727287334"
+    }
+  },
+  "parameters": {
+    "securityResponsibility": {
+      "type": "string",
+      "metadata": {
+        "description": "Required: A default deployment of this template is for public demonstration only.  Before using authentic PII, ensure the security of your deployment.  The security of this deployment is your responsibility.  To acknowledge your understanding and acceptance of the foregoing, type “I AGREE”"
+      },
+      "allowedValues": [
+        "I AGREE"
+      ]
+    },
+    "acceptEula": {
+      "type": "string",
+      "metadata": {
+        "description": "Required: If you accept the Senzing End User License Agreement at https://senzing.com/end-user-license-agreement, enter \"I_ACCEPT_THE_SENZING_EULA\""
+      },
+      "allowedValues": [
+        "I_ACCEPT_THE_SENZING_EULA"
+      ]
+    },
+    "senzingLicenseAsBase64": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Required if inserting more than 100K records.  Senzing license as base64 encoded string"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Resource group to deploy into."
+      }
+    },
+    "environmentName": {
+      "type": "string",
+      "defaultValue": "Development",
+      "allowedValues": [
+        "Development",
+        "Production"
+      ],
+      "metadata": {
+        "description": "The name of the environment. This must be Development or Production."
+      }
+    },
+    "sqlServerAdministratorLogin": {
+      "type": "string",
+      "metadata": {
+        "description": "The administrator login username for the SQL server."
+      }
+    },
+    "sqlServerAdministratorLoginPassword": {
+      "type": "secureString",
+      "metadata": {
+        "description": "The administrator login password for the SQL server."
+      }
+    }
+  },
+  "functions": [],
+  "variables": {
+    "auditStorageAccountName": "[take(format('senzing-audit-{0}-{1}', parameters('location'), uniqueString(resourceGroup().id)), 24)]",
+    "auditStorageAccountSkuName": "Standard_LRS",
+    "sqlDatabaseName": "G2",
+    "sqlServerName": "[format('senzing-{0}-{1}', parameters('location'), uniqueString(resourceGroup().id))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "database",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "auditStorageAccountName": {
+            "value": "[variables('auditStorageAccountName')]"
+          },
+          "auditStorageAccountSkuName": {
+            "value": "[variables('auditStorageAccountSkuName')]"
+          },
+          "environmentName": {
+            "value": "[parameters('environmentName')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "sqlDatabaseName": {
+            "value": "[variables('sqlDatabaseName')]"
+          },
+          "sqlServerAdministratorLogin": {
+            "value": "[parameters('sqlServerAdministratorLogin')]"
+          },
+          "sqlServerAdministratorLoginPassword": {
+            "value": "[parameters('sqlServerAdministratorLoginPassword')]"
+          },
+          "sqlServerName": {
+            "value": "[variables('sqlServerName')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.4.451.19169",
+              "templateHash": "14432574364632266774"
+            }
+          },
+          "parameters": {
+            "auditStorageAccountName": {
+              "type": "string",
+              "metadata": {
+                "description": "Account name for storage."
+              }
+            },
+            "auditStorageAccountSkuName": {
+              "type": "string",
+              "defaultValue": "Standard_LRS",
+              "metadata": {
+                "description": "The name of the audit storage account SKU."
+              }
+            },
+            "environmentName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the environment. This must be Development or Production."
+              },
+              "allowedValues": [
+                "Development",
+                "Production"
+              ]
+            },
+            "location": {
+              "type": "string",
+              "metadata": {
+                "description": "The Azure region into which the resources should be deployed."
+              }
+            },
+            "sqlDatabaseName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the database."
+              }
+            },
+            "sqlDatabaseSku": {
+              "type": "object",
+              "defaultValue": {
+                "name": "Standard",
+                "tier": "Standard"
+              },
+              "metadata": {
+                "description": "The name and tier of the SQL database SKU."
+              }
+            },
+            "sqlServerAdministratorLogin": {
+              "type": "secureString",
+              "metadata": {
+                "description": "The administrator login username for the SQL server."
+              }
+            },
+            "sqlServerAdministratorLoginPassword": {
+              "type": "secureString",
+              "metadata": {
+                "description": "The administrator login password for the SQL server."
+              }
+            },
+            "sqlServerName": {
+              "type": "string",
+              "metadata": {
+                "description": "Server name."
+              }
+            }
+          },
+          "functions": [],
+          "variables": {
+            "auditingEnabled": "[equals(parameters('environmentName'), 'Production')]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Sql/servers",
+              "apiVersion": "2020-11-01-preview",
+              "name": "[parameters('sqlServerName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "administratorLogin": "[parameters('sqlServerAdministratorLogin')]",
+                "administratorLoginPassword": "[parameters('sqlServerAdministratorLoginPassword')]"
+              }
+            },
+            {
+              "type": "Microsoft.Sql/servers/databases",
+              "apiVersion": "2020-11-01-preview",
+              "name": "[format('{0}/{1}', parameters('sqlServerName'), parameters('sqlDatabaseName'))]",
+              "location": "[parameters('location')]",
+              "sku": "[parameters('sqlDatabaseSku')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+              ]
+            },
+            {
+              "condition": "[variables('auditingEnabled')]",
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2021-02-01",
+              "name": "[parameters('auditStorageAccountName')]",
+              "kind": "StorageV2",
+              "location": "[parameters('location')]",
+              "sku": {
+                "name": "[parameters('auditStorageAccountSkuName')]"
+              }
+            },
+            {
+              "condition": "[variables('auditingEnabled')]",
+              "type": "Microsoft.Sql/servers/auditingSettings",
+              "apiVersion": "2020-11-01-preview",
+              "name": "[format('{0}/{1}', parameters('sqlServerName'), 'default')]",
+              "properties": {
+                "state": "Enabled",
+                "storageAccountAccessKey": "[if(equals(parameters('environmentName'), 'Production'), listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('auditStorageAccountName')), '2021-02-01').keys[0].value, '')]",
+                "storageEndpoint": "[if(equals(parameters('environmentName'), 'Production'), reference(resourceId('Microsoft.Storage/storageAccounts', parameters('auditStorageAccountName'))).primaryEndpoints.blob, '')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('auditStorageAccountName'))]",
+                "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+              ]
+            }
+          ],
+          "outputs": {
+            "serverFullyQualifiedDomainName": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName]"
+            },
+            "serverName": {
+              "type": "string",
+              "value": "[parameters('sqlServerName')]"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "queue",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "environmentName": {
+            "value": "[parameters('environmentName')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.4.451.19169",
+              "templateHash": "5966654349366856579"
+            }
+          },
+          "parameters": {
+            "environmentName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the environment. This must be Development or Production."
+              },
+              "allowedValues": [
+                "Development",
+                "Production"
+              ]
+            },
+            "location": {
+              "type": "string",
+              "metadata": {
+                "description": "The Azure region into which the resources should be deployed."
+              }
+            }
+          },
+          "functions": [],
+          "resources": []
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "location": {
+      "type": "string",
+      "value": "[parameters('location')]"
+    },
+    "resourceGroupId": {
+      "type": "string",
+      "value": "[resourceGroup().id]"
+    },
+    "senzingTemplateName": {
+      "type": "string",
+      "value": "aks-poc-simple"
+    },
+    "senzingTemplateVersion": {
+      "type": "string",
+      "value": "0.1.0"
+    }
+  }
+}
