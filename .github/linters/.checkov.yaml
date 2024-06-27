@@ -1,0 +1,4 @@
+quiet: true
+skip-path: 
+  - arm-json
+  - bicep
