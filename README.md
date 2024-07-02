@@ -1,14 +1,13 @@
 # azure-template-aks-poc-simple
 
-## :warning: Repository in abeyance
+## :no_entry: Deprecated
 
-If you are beginning your journey with
-[Senzing](https://senzing.com/),
-please start with
-[Senzing Quick Start guides](https://docs.senzing.com/quickstart/).
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
-You are in the
-[Senzing Garage](https://github.com/senzing-garage)
+If you are beginning your journey with [Senzing],
+please start with [Senzing Quick Start guides].
+
+You are in the [Senzing Garage]
 where projects are "tinkered" on.
 Although this GitHub repository may help you understand an approach to using Senzing,
 it's not considered to be "production ready" and is not considered to be part of the Senzing product.
@@ -25,21 +24,20 @@ An Azure ARM template for bringing up Senzing on Kubernetes (AKS)
 
 ### Contents
 
-1. [Expectations](#expectations)
-1. [Prerequisites](#prerequisites)
-    1. [Prerequisite software](#prerequisite-software)
-    1. [Clone repository](#clone-repository)
+1. [Expectations]
+1. [Prerequisites]
+    1. [Prerequisite software]
+    1. [Clone repository]
 
 ## Preamble
 
-At [Senzing](http://senzing.com),
-we strive to create GitHub documentation in a
-"[don't make me think](https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
+At [Senzing], we strive to create GitHub documentation in a
+"[don't make me think]" style.
 For the most part, instructions are copy and paste.
 Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
 Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
 If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/senzing-garage/template-python/issues/new?template=documentation_request.md)
+[Documentation issue]
 describing where we can improve.   Now on with the show...
 
 ### Legend
@@ -52,40 +50,40 @@ describing where we can improve.   Now on with the show...
 
 ## Related artifacts
 
-1. [DockerHub](https://hub.docker.com/r/senzing)
-1. [Helm Charts](https://github.com/senzing-garage/charts)
+1. [DockerHub]
+1. [Helm Charts]
 
 ## Expectations
 
 - **Space:** This repository and demonstration require 20 GB free disk space.
 - **Time:** Budget 4 hours to get the demonstration up-and-running, depending on CPU and network speeds.
 - **Background knowledge:** This repository assumes a working knowledge of:
-  - [Docker](https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/docker.md)
-  - [Kubernetes](https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/kubernetes.md)
-  - [Helm](https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/helm.md)
-  - [Porter](https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/porter.md)
+  - [Docker]
+  - [Kubernetes]
+  - [Helm]
+  - [Porter]
 
 ## Prerequisites
 
 ### Prerequisite software
 
-1. [Porter](https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/porter.md)
+1. [Porter]
 
-1. Follow steps in [clone-repository](https://github.com/senzing-garage/knowledge-base/blob/master/HOWTO/clone-repository.md) to install the Git repository.
+1. Follow steps in [clone-repository] to install the Git repository.
 
 ### In development branch
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSenzing%2Fazure-template-aks-poc-simple%2Fissue-3.dockter.1%2Farm-json%2Faks-poc-simple.json)
+[![Deploy to Azure Button]][Deploy to Azure Dev]
 
 ### In main branch
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSenzing%2Fazure-template-aks-poc-simple%2Fmain%2Fmain.json)1.
+[![Deploy to Azure Button]][Deploy to Azure Main]
 
 ## Development
 
 ### Prerequisite software for development
 
-1. [az bicep](https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/bicep.md)
+1. [az bicep]
     1. The instructions assume that `az bicep` is the command used, not `bicep`.
 
 ### Clone repository
@@ -93,13 +91,13 @@ describing where we can improve.   Now on with the show...
 1. Using these environment variable values:
 
     ```console
-    export GIT_ACCOUNT=senzing
+    export GIT_ACCOUNT=senzing-garage
     export GIT_REPOSITORY=azure-template-aks-poc-simple
     export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
     export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
     ```
 
-1. Follow steps in [clone-repository](https://github.com/senzing-garage/knowledge-base/blob/master/HOWTO/clone-repository.md) to install the Git repository.
+1. Follow steps in [clone-repository] to install the Git repository.
 
 ### Create ARM file
 
@@ -110,3 +108,24 @@ describing where we can improve.   Now on with the show...
     cd ${GIT_REPOSITORY_DIR}
     make aks-poc-simple.json
     ```
+
+[az bicep]: https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/bicep.md
+[Clone repository]: #clone-repository
+[clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/master/HOWTO/clone-repository.md
+[Deploy to Azure Button]: https://aka.ms/deploytoazurebutton
+[Deploy to Azure Dev]: https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSenzing%2Fazure-template-aks-poc-simple%2Fissue-3.dockter.1%2Farm-json%2Faks-poc-simple.json
+[Deploy to Azure Main]: https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSenzing%2Fazure-template-aks-poc-simple%2Fmain%2Fmain.json
+[Docker]: https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/docker.md
+[DockerHub]: https://hub.docker.com/r/senzing
+[Documentation issue]: https://github.com/senzing-garage/template-python/issues/new?template=documentation_request.md
+[don't make me think]: https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/dont-make-me-think.md
+[Expectations]: #expectations
+[Helm]: https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/helm.md
+[Helm Charts]: https://github.com/senzing-garage/charts
+[Kubernetes]: https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/kubernetes.md
+[Porter]: https://github.com/senzing-garage/knowledge-base/blob/master/WHATIS/porter.md
+[Prerequisites]: #prerequisites
+[Prerequisite software]: #prerequisite-software
+[Senzing]: https://senzing.com/
+[Senzing Garage]: https://github.com/senzing-garage
+[Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
